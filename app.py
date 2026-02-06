@@ -25,9 +25,9 @@ st.title("🌐 IoT Network Traffic Anomaly Dashboard")
 # Sidebar
 st.sidebar.header("Filter Traffic")
 device = st.sidebar.multiselect("Select Device:", options=df['device_type'].unique(), default=df['device_type'].unique())
-proto = st.sidebar.multiselect("Select Protocol:", options=df['protocol'].unique(), default=df['protocol'].unique())
+proto = st.sidebar.multiselect("Select Protocol_type:", options=df['protocol_type'].unique(), default=df['protocol_type'].unique())
 
-filtered_df = df[(df['device_type'].isin(device)) & (df['protocol'].isin(proto))]
+filtered_df = df[(df['device_type'].isin(device)) & (df['protocol_type'].isin(proto))]
 
 # Metrics
 m1, m2, m3 = st.columns(3)
@@ -38,7 +38,7 @@ m3.metric("Attack Percentage", f"{(len(filtered_df[filtered_df['label']=='Attack
 # Charts
 c1, c2 = st.columns(2)
 with c1:
-    fig1 = px.histogram(filtered_df, x="protocol", color="label", barmode="group", title="Traffic by Protocol & Label")
+    fig1 = px.histogram(filtered_df, x="protocol_type", color="label", barmode="group", title="Traffic by Protocol & Label")
     st.plotly_chart(fig1, use_container_width=True)
 
 with c2:
