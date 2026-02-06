@@ -32,7 +32,7 @@ filtered_df = df[(df['device_type'].isin(device)) & (df['protocol_type'].isin(pr
 # Metrics
 m1, m2, m3 = st.columns(3)
 m1.metric("Total Flows", len(filtered_df))
-m2.metric("Avg Packet Length", f"{filtered_df['packet_length'].mean():.2f}")
+m2.metric("Avg Packet Size", f"{filtered_df['packet_size'].mean():.2f}")
 m3.metric("Attack Percentage", f"{(len(filtered_df[filtered_df['label']=='Attack'])/len(filtered_df)*100):.1f}%")
 
 # Charts
@@ -42,5 +42,5 @@ with c1:
     st.plotly_chart(fig1, use_container_width=True)
 
 with c2:
-    fig2 = px.scatter(filtered_df, x="duration", y="packet_length", color="label", title="Duration vs Length")
+    fig2 = px.scatter(filtered_df, x="duration", y="packet_size", color="label", title="Duration vs Length")
     st.plotly_chart(fig2, use_container_width=True)
