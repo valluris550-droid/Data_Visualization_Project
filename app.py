@@ -15,7 +15,7 @@ st.set_page_config(page_title="IoT Traffic Monitor", layout="wide")
 
 @st.cache_data
 def load_data():
-    df = pd.read_csv('iot_network_traffic.csv')
+    df = pd.read_csv('IOT_NETWORK_DATA.csv')
     return df
 
 df = load_data()
